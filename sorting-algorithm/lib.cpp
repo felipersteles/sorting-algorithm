@@ -15,6 +15,7 @@ using namespace std;
 void merge(int array[], int const left, int const mid,
            int const right)
 {
+    
     int const subArrayOne = mid - left + 1;
     int const subArrayTwo = right - mid;
 
@@ -67,6 +68,7 @@ void merge(int array[], int const left, int const mid,
     }
     delete[] leftArray;
     delete[] rightArray;
+    
 }
 
 // begin is for left index and end is right index
@@ -75,11 +77,12 @@ void merge_sort(int array[], int const begin, int const end)
 {
     if (begin >= end)
         return;
-
+    
     int mid = begin + (end - begin) / 2;
     merge_sort(array, begin, mid);
     merge_sort(array, mid + 1, end);
     merge(array, begin, mid, end);
+
 }
 
 int partition(int arr[], int start, int end)
@@ -157,9 +160,35 @@ void bubble_sort(int arr[], int n)
 
 // UTILITY FUNCTIONS
 // Function to print an array
-void print_array(int A[], int size)
+void print_array(int* intArr, int arrLength)
 {
-    for (int i = 0; i < size; i++)
-        cout << A[i] << " ";
-    cout << endl;
+    cout<< endl <<"The array is: { " ;
+    for(int i = 0; i< arrLength; i++){
+        cout <<  intArr[i] << " ";
+    }
+    cout<< "}" <<endl ;
+}
+
+// função que cria array conforme input do usuario
+int* get_array(int arrLength){
+    int *intArr = new int[arrLength]; // Alocando array com 5 na primeira posicão
+    
+    // mostrando no console que nao foi possivel alocar
+    if(intArr == NULL){
+        cout << "Error durint the alocation";
+        return NULL;
+    }
+    
+    for(int i = 0; i< arrLength; i++){
+        cout << "Position [" << i << "] = ";
+        cin >> intArr[i];
+    }
+    
+    cout<< endl <<"The array: { " ;
+    for(int i = 0; i< arrLength; i++){
+        cout <<  intArr[i] << " ";
+    }
+    cout<< "}" <<endl ;
+    
+    return intArr;
 }
